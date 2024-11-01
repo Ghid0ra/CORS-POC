@@ -23,8 +23,8 @@
                 console.log("Raw Response:", textResponse); // Log the raw response
 
                 if (response.ok) {
-                    const data = JSON.parse(textResponse); // Now parse it as JSON
-                    console.log("Fetched Data:", data); // Display fetched data in console
+                    // Directly log the encrypted data without parsing
+                    console.log("Fetched Data (Encrypted):", textResponse); // Display the raw response in console
                     alert("Data fetched! Check the console for details.");
                 } else {
                     console.log("Failed to fetch data:", response.status);
@@ -38,6 +38,7 @@
     </script>
 </body>
 </html>
+
 
 
 
