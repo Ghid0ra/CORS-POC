@@ -9,10 +9,14 @@
     
     <script>
         document.getElementById('fetchDataButton').addEventListener('click', async function() {
+            const jwtToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ0MzFEMzI2RjM2MEYzNjM0Njg5OUQ0REY2OEE0NjZDMjJEQUNERURSUzI1NiIsInR5cCI6ImF0K2p3dCIsIng1dCI6IlJESFRKdk5nODJOR2laMU45b3BHYkNMYXplMCJ9.eyJuYmYiOjE3MzA0NDQ5ODQsImV4cCI6MTczMDQ0ODU4NCwiaXNzIjoiaHR0cHM6Ly9xYWxvZ2lubmV3LnRhbG9zbWwuY29tIiwiYXVkIjoiQXBpUmVzb3VyY2UiLCJjbGllbnRfaWQiOiJhZ2lsZSIsInN1YiI6IjY0IiwiaWRwIjoibG9jYWwiLCJhdXRoX3RpbWUiOjE3MzA0NDQ5NzAsIkFsbG93ZWRDbGllbnRzIjpbImFnaWxlIiwiY2xhaW0iLCJjbGllbnQiLCJkb2NleHRyYWN0IiwicGFjbWVkIl0sIk1hc3RlckNvbXBhbnlJZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCIsIkNvbXBhbnlJZCI6ImQ0MmUwZjhjLWQwNjEtNDdmZC04NzllLTIzNDlkM2ZmYmFiMSIsIkJyYW5jaElkIjoiYjU5YjlmOWUtZmEwMC00MGQ5LTllMjEtMWI0Y2JmM2E5ZWE5IiwiUGVybWlzc2lvblR5cGUiOiIxIiwicm9sZSI6WyJHQU0iLCJDb2RlciJdLCJSb2xlSWRlbnRpZmllciI6WyIyYzU4NGMzZS01N2E2LTRjMjItOGI1YS05M2FjZDY0ZDYwYTkiLCJjZTRiYWEzMi0wYmUwLTQ3MDEtYTQzYi1lNWJkMzE2ZjkzOTAiXSwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZ2lsZWNvZGVyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiYWdpbGVjb2RlciIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFnaWxlY29kZXIiLCJDbGllbnRJZCI6ImFnaWxlIiwiSXNVc2VyQmFzZWRQZXJtaXNzaW9uIjoiRmFsc2UiLCJ0ZW5hbnRJZCI6IjE5Iiwic2lkIjoiRUQwNjEyQTJDMzExNDhGMTBCMzcyRDIyMTg1QjdEQzkiLCJpYXQiOjE3MzA0NDQ5ODQsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJlbWFpbCIsImFwaS5yZWFkIiwib2ZmbGluZV9hY2Nlc3MiXSwiYW1yIjpbInB3ZCJdfQ.DkBWbmErABjhI28JKg6mL0p61NESr1XG3iSb_eEeF0GdOsQEwfq3UpI2YRPc7wNz5IXGHdbnq0rXX_2_upsi01d0y3QSyY2bdXVoET7sUBPD5pDx1xrmQvbTI9oyO88E3ftQVA2zFLVIl28tdfHmkAHlRhR74_plubqmac_7VS-a-4wqXH_2U5a_fxvCfHVcbTXxTNz3IKhTRiii-odUo8581Jsol60T4YxtzXrIAhxHADfnfH0BW-SUyTouUQEqGaxIiGUBBrDW5BmLSbpOiQPrlWP-T20ojZwL_F_4Or8ThTA6DVuUT5882N6GpOzbjEpe_wqetMXSiOct_FjhRw'; // Replace with the actual JWT token
             try {
                 const response = await fetch('https://qaagilecptapi.talosml.com/api/v1.0/Patient/GetAllReasonType', {
                     method: 'GET',
-                    credentials: 'include' // Send cookies along with the request
+                    headers: {
+                        'Authorization': `Bearer ${jwtToken}` // Add the JWT in the Authorization header
+                    },
+                    credentials: 'include' // Include cookies if needed
                 });
 
                 if (response.ok) {
