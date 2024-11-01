@@ -19,8 +19,11 @@
                     credentials: 'include' // Include cookies if needed
                 });
 
+                const textResponse = await response.text(); // Get the raw text response
+                console.log("Raw Response:", textResponse); // Log the raw response
+
                 if (response.ok) {
-                    const data = await response.json();
+                    const data = JSON.parse(textResponse); // Now parse it as JSON
                     console.log("Fetched Data:", data); // Display fetched data in console
                     alert("Data fetched! Check the console for details.");
                 } else {
@@ -35,3 +38,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+
